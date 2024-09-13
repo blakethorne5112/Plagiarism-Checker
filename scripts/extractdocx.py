@@ -15,17 +15,17 @@ See LICENSE for licensing information.
 
 import sys
 
-from docx import opendocx, getdocumenttext
+from docx import Document
 
 def docxExtract(docxfile):
     try:
-        document = opendocx(docxfile)
+        document = Document(docxfile)
     except:
-        print "Error opening docx"
+        print("Error opening docx") 
         exit()
 
     # Fetch all the text out of the document we just created
-    paratextlist = getdocumenttext(document)
+    paratextlist = [para.text for para in document.paragraphs]
 
     # Make explicit unicode version
     newparatextlist = []
